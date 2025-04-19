@@ -18,7 +18,10 @@ export class AttendanceService {
     return this.attendanceModel.create(createAttendanceDto as any);
   }
 
-  async update(id: number, updateAttendanceDto: UpdateAttendanceDto): Promise<Attendance> {
+  async update(
+    id: number,
+    updateAttendanceDto: UpdateAttendanceDto,
+  ): Promise<Attendance> {
     const attendance = await this.findOne(id);
     await attendance.update(updateAttendanceDto);
     return attendance;
@@ -37,7 +40,11 @@ export class AttendanceService {
     });
   }
 
-  async findByDateRange(employeeId: number, startDate: Date, endDate: Date): Promise<Attendance[]> {
+  async findByDateRange(
+    employeeId: number,
+    startDate: Date,
+    endDate: Date,
+  ): Promise<Attendance[]> {
     return this.attendanceModel.findAll({
       where: {
         employeeId,
@@ -62,7 +69,6 @@ export class AttendanceService {
   async countWorkingDays(employeeId: number, month: Date): Promise<number> {
     const startDate = new Date(month.getFullYear(), month.getMonth(), 1);
     const endDate = new Date(month.getFullYear(), month.getMonth() + 1, 0);
-    
     const attendances = await this.attendanceModel.findAll({
       where: {
         employeeId,
@@ -74,7 +80,6 @@ export class AttendanceService {
         },
       },
     });
-    
     return attendances.length;
   }
 

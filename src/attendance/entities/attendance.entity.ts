@@ -1,5 +1,12 @@
-// src/attendance/entities/attendance.entity.ts
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+// src / attendance / entities / attendance.entity.ts;
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { Employee } from '../../employees/entities/employee.entity';
 
 @Table
